@@ -1,17 +1,20 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 public class GunController : MonoBehaviour
 {
-    [SerializeField] private GameObject _Bullet;
+    private Bullet.Factory _factory;
+
     private float _timeShoot;
 
     private GunView _gunView;
     private GunModel _gunModel;
     private void Start() => _gunModel.AmmoNumber = _gunModel.MaxAmmo;
-    [Zenject.Inject]
-    private void Constructor(GunModel model, GunView gunView)
+    [Inject]
+    private void Constructor(GunModel model, GunView gunView,Bullet.Factory factory)
     {
+        _factory = factory;
         _gunModel = model;
         _gunView = gunView;
     }
@@ -33,7 +36,8 @@ public class GunController : MonoBehaviour
     {
         if (_gunModel.AmmoNumber >= 0)
         {
-            _gunView.SpawnBullet(_Bullet, _gunModel.AmmoNumber);
+            _factory.Create();
+           _gunView.BulletText( _gunModel.AmmoNumber);
             _gunModel.AmmoNumber--;
         }
     }
