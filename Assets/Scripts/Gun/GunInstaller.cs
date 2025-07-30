@@ -1,18 +1,18 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
 public class GunInstaller : MonoInstaller
 {
-    [SerializeField] private GunModel _gunModel;
+    [SerializeField] private GunModelScript _gunModelScript;
     [SerializeField] private GunView _gunView;
 
     [SerializeField] private GameObject _gameObject;
-    [SerializeField] private Transform _transform;
+   // [SerializeField] private Transform _transform;
     public override void InstallBindings()
     {
-        Container.Bind<GunModel>().FromInstance(_gunModel).AsSingle();
+        Container.Bind<GunModelScript>().FromInstance(_gunModelScript).AsSingle().NonLazy();
         Container.Bind<GunView>().FromInstance(_gunView).AsSingle();
 
-        Container.BindIFactory<Bullet, Bullet.Factory>().FromComponentInNewPrefab(_gameObject).UnderTransform(_transform);
+        Container.BindFactory<Bullet, Bullet.Factory>().FromComponentInNewPrefab(_gameObject);
     }
 }

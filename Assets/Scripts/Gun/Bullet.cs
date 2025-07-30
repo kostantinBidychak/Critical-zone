@@ -5,17 +5,21 @@ using Zenject;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _timeOfDestroy;
+    [SerializeField] private float _speed;
+    
     private void Start() => StartCoroutine(nameof(Enumerator));
     private void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime);
-        DestroyBullet();
+        transform.position += -transform.right * _speed * Time.deltaTime;
     }
 
     private IEnumerator Enumerator()
     {
-        yield return new WaitForSeconds(_timeOfDestroy);
-        DestroyBullet();
+        while (true)
+        {
+            yield return new WaitForSeconds(_timeOfDestroy);
+            DestroyBullet();
+        }
     }
     private void DestroyBullet()
     {
@@ -23,4 +27,5 @@ public class Bullet : MonoBehaviour
     }
 
     public class Factory : PlaceholderFactory<Bullet> { }
+
 }
