@@ -37,7 +37,7 @@ public class GunController : MonoBehaviour
 
     private void Shoot()
     {
-        if (_gunModelScript.AmmoNumber > 0)
+        if (_gunModelScript.CanShoot)
         {
          var Bullet = _factory.Create();
             Bullet.transform.position =_transform.position;
@@ -52,9 +52,7 @@ public class GunController : MonoBehaviour
     {
         if (_gunModelScript.ReloadBullets > 0)
         {
-            int differemce = _gunModelScript.MaxAmmo - _gunModelScript.AmmoNumber;
-            _gunModelScript.AmmoNumber += differemce;
-            _gunModelScript.ReloadBullets -= differemce;
+            _gunModelScript.Reload();
         }
     }
 }
