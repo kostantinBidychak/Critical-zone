@@ -1,8 +1,7 @@
-
 [System.Serializable]
 public class GunModelScript
 {
-   public float Damage;
+   public int Damage = 25;
    public float TimeOfRecherge;
    public int AmmoNumber;
    public int ReloadBullets;
