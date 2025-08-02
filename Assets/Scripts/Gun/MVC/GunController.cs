@@ -20,7 +20,11 @@ public class GunController : MonoBehaviour
         _gunView = gunView;
     }
 
-    private void Start() => _gunModelScript.AmmoNumber = _gunModelScript.MaxAmmo;
+    private void Start()
+    {
+        _gunModelScript.AmmoNumber = _gunModelScript.MaxAmmo;
+        _gunView.BulletText(_gunModelScript.AmmoNumber);
+    }
 
     private void Update()
     {
@@ -41,9 +45,11 @@ public class GunController : MonoBehaviour
         {
          var Bullet = _factory.Create();
             Bullet.transform.position =_transform.position;
+            Bullet.transform.rotation = _transform.rotation;
 
-            _gunView.BulletText(_gunModelScript.AmmoNumber);
             _gunModelScript.AmmoNumber--;
+            _gunView.BulletText(_gunModelScript.AmmoNumber);
+        
             _timeShoot = 0f;
         }
     }
@@ -53,6 +59,7 @@ public class GunController : MonoBehaviour
         if (_gunModelScript.ReloadBullets > 0)
         {
             _gunModelScript.Reload();
+            _gunView.BulletText(_gunModelScript.AmmoNumber);
         }
     }
 }

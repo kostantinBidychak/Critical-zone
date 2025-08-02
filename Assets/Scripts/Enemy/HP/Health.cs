@@ -2,26 +2,22 @@ using UnityEngine;
 
 public class Health : MonoBehaviour,IDamagable
 {
-    [SerializeField] private int value = 100;
-    private const string BulletTag = "Bullet";
+    [SerializeField] private int _value = 100;
+    private const string _BulletTag = "Bullet";
 
-    [Zenject.Inject]private GunModelScript gunModelScript;
+    [Zenject.Inject]private GunModelScript _gunModelScript;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-       
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag(BulletTag))
+        if (other.CompareTag(_BulletTag))
         {
-            TakeDamage(gunModelScript.Damage);
+            TakeDamage(_gunModelScript.Damage);
         }
     }
     public void TakeDamage(int damage)
     {
-        value -= damage;
-        if (value <= 0) 
+        _value -= damage;
+        if (_value <= 0) 
         {
            Destroy(gameObject);
         }

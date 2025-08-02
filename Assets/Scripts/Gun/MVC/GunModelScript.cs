@@ -13,6 +13,6 @@ public class GunModelScript
     {
       int differemce = MaxAmmo - AmmoNumber;
       AmmoNumber += differemce;
-      ReloadBullets -= differemce;
+    differemce = UnityEngine.Mathf.Clamp(ReloadBullets -= differemce,0,30);
     }
 }
