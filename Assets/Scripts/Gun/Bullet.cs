@@ -6,7 +6,9 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _timeOfDestroy;
     [SerializeField] private float _speed;
-    
+    private int _damage = 100;
+    public void Init(int  damage) => _damage = damage;
+
     private void Start() => StartCoroutine(nameof(Enumerator));
     private void Update()
     {
@@ -26,6 +28,13 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.TryGetComponent(out Health health))
+        {
+            health.TakeDamage(_damage);
+        }
+    }
     public class Factory : PlaceholderFactory<Bullet> { }
 
 }

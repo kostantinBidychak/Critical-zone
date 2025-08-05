@@ -3,11 +3,15 @@ using UnityEngine.AI;
 public class EnemyNawMesh : MonoBehaviour
 {
    private NavMeshAgent _agent;
-    [SerializeField] private Transform _player;
+     private Transform _player;
 
     [SerializeField] private float _distance;
 
-    private void Start() => _agent = GetComponent<NavMeshAgent>();
+    private void Start()
+    {
+        _agent = GetComponent<NavMeshAgent>();
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
+    }
 
     private void Update()
     {

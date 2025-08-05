@@ -5,7 +5,7 @@ public class GunTester
     [Test]
     public void WhenReload_AndAmmoIsFull_ThenReloadBulletsShouldNotChange()
     {
-      GunModelScript gunModelScript = new GunModelScript();
+      GunModel gunModelScript = new GunModel();
      
         gunModelScript.Reload();
 
@@ -16,7 +16,7 @@ public class GunTester
     [Test]
     public void WhenShoot_AndMaxAmmoIsFull_ThenShootBulletsShouldNotChange()
     {
-        GunModelScript gunModelScript = new GunModelScript();
+        GunModel gunModelScript = new GunModel();
 
         Assert.IsFalse(gunModelScript.CanShoot);
         Assert.AreEqual(30, gunModelScript.MaxAmmo);
