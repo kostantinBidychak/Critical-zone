@@ -6,16 +6,17 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _timeOfDestroy;
     [SerializeField] private float _speed;
+
     private int _damage = 100;
     public void Init(int  damage) => _damage = damage;
 
-    private void Start() => StartCoroutine(nameof(Enumerator));
+    private void Start() => StartCoroutine(nameof(TimeOfDestroy));
     private void Update()
     {
         transform.position += -transform.right * _speed * Time.deltaTime;
     }
 
-    private IEnumerator Enumerator()
+    private IEnumerator TimeOfDestroy()
     {
         while (true)
         {
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour
             DestroyBullet();
         }
     }
+
     private void DestroyBullet()
     {
         Destroy(gameObject);

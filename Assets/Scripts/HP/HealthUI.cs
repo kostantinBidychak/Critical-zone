@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthUI : MonoBehaviour
+[System.Serializable]
+public class HealthUI 
 {
     [SerializeField] private Image _image;
 
-    public void ChangeText(int health) => _image.fillAmount = health / 100;
+    public void ChangeText(int health) => _image.fillAmount = health / 100f;
 }

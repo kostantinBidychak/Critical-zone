@@ -2,15 +2,8 @@ using UnityEngine;
 
 public class Wallet : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public int Money { get; private set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void AddMoney(int amount) => Money += amount;
+    public void SpendMoney(int amount) => Money -= amount;
 }

@@ -16,6 +16,10 @@ public class EnemyNawMesh : MonoBehaviour
     private void Update()
     {
         if (Vector3.Distance(transform.position,_player.position) <= _distance)
+        { 
         _agent.SetDestination(_player.position );
+        }
+        else
+        _agent.ResetPath();
     }
 }

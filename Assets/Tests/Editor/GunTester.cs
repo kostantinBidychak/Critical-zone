@@ -9,8 +9,8 @@ public class GunTester
      
         gunModelScript.Reload();
 
-        Assert.AreEqual(30,gunModelScript.AmmoNumber);
-        Assert.AreEqual(90, gunModelScript.ReloadBullets);
+        Assert.AreEqual(30,gunModelScript.Ammo);
+        Assert.AreEqual(90, gunModelScript.ReloadAmmo);
     }
 
     [Test]

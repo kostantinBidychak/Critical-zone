@@ -60,7 +60,7 @@ namespace TMPro.Examples
                     // TextMesh Implementation
                     // Causes crashes since atlas needed exceeds 4096 X 4096
                     /*
-                    GameObject go = new GameObject("Arial " + i);
+                    GameObject go = new GameObject("Arial " + _index);
 
                     //if (lineHeight > orthoSize * 2 * 0.9f) return;
 
@@ -70,12 +70,12 @@ namespace TMPro.Examples
                     textMesh.font = Resources.Load("Fonts/ARIAL", typeof(Font)) as Font;
                     textMesh.renderer.sharedMaterial = textMesh.font.material;
                     textMesh.anchor = TextAnchor.MiddleLeft;
-                    textMesh.fontSize = i * 10;
+                    textMesh.fontSize = _index * 10;
 
                     textMesh.color = new Color32(255, 255, 255, 255);
-                    textMesh.text = i + " pts - Lorem ipsum dolor sit...";
+                    textMesh.text = _index + " pts - Lorem ipsum dolor sit...";
 
-                    lineHeight += i;
+                    lineHeight += _index;
                     */
                 }
             }

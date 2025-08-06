@@ -11,11 +11,13 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float _spawnTime;
     
-    private void Start() => StartCoroutine(nameof(enumerator));
+    private bool _isSpawning;
 
-    private IEnumerator enumerator()
+    private void Start() => StartCoroutine(nameof(TimeOfSpawn));
+
+    private IEnumerator TimeOfSpawn()
     {
-        while (true)
+        while (_isSpawning)
         {
             yield return new WaitForSeconds(_spawnTime);
             Spawn();
@@ -25,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     {
         _spawnTarget = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
         _gameObjectTarget = _gameObjects[Random.Range(0, _gameObjects.Length)];
+
         Instantiate(_gameObjectTarget, _spawnTarget.position, _gameObjectTarget.transform.rotation);
     }
 }

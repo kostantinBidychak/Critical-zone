@@ -5,34 +5,33 @@ using Zenject;
 public class GunController : MonoBehaviour
 {
     private Bullet.Factory _factory;
-    [SerializeField] private Transform _transform;
+    [SerializeField] private Transform _BulletPoint;
 
     private float _timeShoot;
 
     private GunView _gunView;
-    private GunModel _gunModelScript;
-    private Bullet _bullet;
+    private GunModel _gunModel;
 
     [Inject]
     private void Constructor(GunModel model, GunView gunView,Bullet.Factory factory)
     {
         _factory = factory;
-        _gunModelScript = model;
+        _gunModel = model;
         _gunView = gunView;
     }
 
     private void Start()
     {
-        _gunModelScript.AmmoNumber = _gunModelScript.MaxAmmo;
+        _gunModel.Ammo = _gunModel.MaxAmmo;
 
-        _gunView.ReloadAmmoText(_gunModelScript.ReloadBullets);
-        _gunView.BulletText(_gunModelScript.AmmoNumber);
+        _gunView.ReloadAmmoText(_gunModel.ReloadAmmo);
+        _gunView.BulletText(_gunModel.Ammo);
     }
 
     private void Update()
     {
         _timeShoot += Time.deltaTime;
-        if (Mouse.current.leftButton.isPressed && _gunModelScript.TimeOfRecherge <= _timeShoot)
+        if (Mouse.current.leftButton.isPressed && _gunModel.TimeOfShoot <= _timeShoot)
         {
             Shoot();
         }
@@ -45,15 +44,15 @@ public class GunController : MonoBehaviour
 
     private void Shoot()
     {
-        if (_gunModelScript.CanShoot)
+        if (_gunModel.CanShoot)
         {
          var Bullet = _factory.Create();
-            Bullet.transform.position =_transform.position;
-            Bullet.transform.rotation = _transform.rotation;
-            Bullet.Init(_gunModelScript.Damage);
+            Bullet.transform.position =_BulletPoint.position;
+            Bullet.transform.rotation = _BulletPoint.rotation;
+            Bullet.Init(_gunModel.Damage);
 
-            _gunModelScript.AmmoNumber--;
-            _gunView.BulletText(_gunModelScript.AmmoNumber);
+            _gunModel.Ammo--;
+            _gunView.BulletText(_gunModel.Ammo);
         
             _timeShoot = 0f;
         }
@@ -61,10 +60,11 @@ public class GunController : MonoBehaviour
 
     private void Reload()
     {
-        if (_gunModelScript.ReloadBullets > 0)
+        if (_gunModel.ReloadAmmo > 0)
         {
-            _gunModelScript.Reload();
-            _gunView.ReloadAmmoText(_gunModelScript.ReloadBullets);
+            _gunModel.Reload();
+            _gunView.ReloadAmmoText(_gunModel.ReloadAmmo);
+            _gunView.BulletText(_gunModel.Ammo);
         }
     }
 }

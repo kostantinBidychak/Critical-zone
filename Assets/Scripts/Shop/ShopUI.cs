@@ -1,16 +1,9 @@
+using TMPro;
 using UnityEngine;
 
 public class ShopUI : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private TextMeshProUGUI _nameObject;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void SwitchText(string name) => _nameObject.text = name;
 }

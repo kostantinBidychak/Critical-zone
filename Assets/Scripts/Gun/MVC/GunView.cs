@@ -1,7 +1,8 @@
 using TMPro;
 using UnityEngine;
 
-public class GunView : MonoBehaviour
+[System.Serializable]
+public class GunView 
 {
     [SerializeField] private TextMeshProUGUI _ammoReload;
     [SerializeField] private TextMeshProUGUI _ammoNumber;
