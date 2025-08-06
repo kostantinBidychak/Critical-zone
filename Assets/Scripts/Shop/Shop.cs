@@ -27,14 +27,14 @@ public class Shop : MonoBehaviour
    public void ToLeft() 
    {
         _index--;
-        if (_index < 0) _index = _items.Length - 1;
+        if (_index <= 0) _index = _items.Length - 1;
         _shopUI.SwitchText(_items[_index].Name);
    }
 
    public void ToRight() 
    {
     _index++;
-        if (_index > _items.Length) _index = 0 ;
+        if (_index >= _items.Length) _index = 0 ;
         _shopUI.SwitchText(_items[_index].Name);
     }
 

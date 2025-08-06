@@ -11,7 +11,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private float _spawnTime;
     
-    private bool _isSpawning;
+   [SerializeField] private bool _isSpawning;
 
     private void Start() => StartCoroutine(nameof(TimeOfSpawn));
 

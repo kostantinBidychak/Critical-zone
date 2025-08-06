@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public class HealthUI 
+public class HealthUI : MonoBehaviour
 {
     [SerializeField] private Image _image;
 

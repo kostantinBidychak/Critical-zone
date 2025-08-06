@@ -9,11 +9,12 @@ public class GunController : MonoBehaviour
 
     private float _timeShoot;
 
-    private GunView _gunView;
+    private GunViewScript _gunView;
     private GunModel _gunModel;
 
+   private AudioSource _audioSource;
     [Inject]
-    private void Constructor(GunModel model, GunView gunView,Bullet.Factory factory)
+    private void Constructor(GunModel model, GunViewScript gunView,Bullet.Factory factory)
     {
         _factory = factory;
         _gunModel = model;
@@ -22,6 +23,8 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
+
         _gunModel.Ammo = _gunModel.MaxAmmo;
 
         _gunView.ReloadAmmoText(_gunModel.ReloadAmmo);
@@ -55,6 +58,7 @@ public class GunController : MonoBehaviour
             _gunView.BulletText(_gunModel.Ammo);
         
             _timeShoot = 0f;
+            _audioSource.PlayOneShot(_audioSource.clip);
         }
     }
 

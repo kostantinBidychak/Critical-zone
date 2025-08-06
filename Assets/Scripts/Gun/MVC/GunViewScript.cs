@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 [System.Serializable]
-public class GunView 
+public class GunViewScript
 {
     [SerializeField] private TextMeshProUGUI _ammoReload;
     [SerializeField] private TextMeshProUGUI _ammoNumber;
