@@ -7,7 +7,7 @@
 - Multiple enemy types
 - Health and weapon pickups
 - Score system
-
+- In development
 ## How to Play
 1. Clone the repository:  
    ```bash
